@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Yuri Tamurkin](https://up.htmlacademy.ru/javascript-individual/2/user/2608607).
-* Наставник: `Неизвестно`.
+* Наставник: `Никита Сигов`.
 
 ---
 
