@@ -20,11 +20,11 @@ console.log(checkLength('fffff', 4));
 
 function isPalindrome(string) {
   const optimizedString = string.toLowerCase().replaceAll(' ', '');
-  console.log(optimizedString)
-  const array = string.toLowerCase().replaceAll(' ', '').split('');
+    console.log(optimizedString);
+  const array = optimizedString.split('');
   const reversedArray = array.reverse();
   const reversedString = reversedArray.join('');
-  console.log(reversedString)
+    console.log(reversedString);
   return optimizedString === reversedString;
 }
 
