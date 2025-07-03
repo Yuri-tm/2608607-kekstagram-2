@@ -30,5 +30,9 @@ function isPalindrome(string) {
 
 console.log(isPalindrome('ДовОд'));
 console.log(isPalindrome('Abba'));
-console.log(isPalindrome('Лёша на полке клопа нашёл '))
+console.log(isPalindrome('Лёша на полке клопа нашёл '));
+
+
+export { isPalindrome };
+export { checkLength };
 
