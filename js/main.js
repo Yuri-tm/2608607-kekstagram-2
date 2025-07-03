@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const MESSAGES = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -17,6 +18,14 @@ const NAMES = [
   'Наташа',
   'Полина',
 ];
+const MIN_AVATAR_NUM = 1;
+const MAX_AVATAR_NUM = 6;
+const MIN_COMMENTS_NUM = 0;
+const MAX_COMMENTS_NUM = 30;
+const MIN_IMG_DESC_NUM = 1;
+const MAX_IMG_DESC_NUM = 25;
+const MIN_LIKES_NUM = 15;
+const MAX_LIKES_NUM = 200;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -24,25 +33,36 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-const MAX_IMG_DESC_NUM = 25;
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
+const idGenerator = () => {
+  let id = 0;
+  return () => ++id;
+};
+const postIdGenerator = idGenerator();
+const postId = postIdGenerator();
+
 const createComment = () => ({
-  id: getRandomInteger(1, 1000000),
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+  id: postId,
+  avatar: `img/avatar-${getRandomInteger(MIN_AVATAR_NUM, MAX_AVATAR_NUM)}.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
 
 function createImageDescription() {
+  const postId = postIdGenerator;
   return {
-    id: getRandomInteger(1, 25),
-    url: `photos/${getRandomInteger(1, 25)}.jpg`,
+    id: postId,
+    url: `photos/${postId}.jpg`,
     description: 'Фото автора',
-    likes: getRandomInteger(15, 200),
-    comments: Array.from({ length: getRandomInteger(0, 30) }, createComment),
+    likes: getRandomInteger(MIN_LIKES_NUM, MAX_LIKES_NUM),
+    comments: Array.from({ length: getRandomInteger(MIN_COMMENTS_NUM, MAX_COMMENTS_NUM) }, createComment),
   };
 }
 const getImgDescriptionArray = Array.from({ length: MAX_IMG_DESC_NUM }, createImageDescription);
+
+// eslint-disable-next-line no-console
+console.log(getImgDescriptionArray);
+
 
